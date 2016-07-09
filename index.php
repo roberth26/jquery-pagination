@@ -6,7 +6,7 @@
 	<body>
 		<header>
 			<div class="container">
-				<a class="github-btn" href="https://github.com/roberth26/jquery.pagination" target="_blank">Github</a>
+				<a class="github-btn" href="https://github.com/roberth26/jquery-pagination" target="_blank">Github</a>
 				<h1>jQuery Pagination</h1>
 			</div>
 		</header>
