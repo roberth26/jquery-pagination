@@ -64,7 +64,7 @@
 		</main>
 		<footer>
 			<div class="container">
-				<a href="roberthall.co"><h2>Built by Robert Hall</h2></a>
+				<a href="http://roberthall.co"><h2>Built by Robert Hall</h2></a>
 			</div>
 		</footer>
 
