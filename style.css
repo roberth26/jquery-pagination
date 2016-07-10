@@ -56,6 +56,7 @@ header h1 {
 
 main {
     background-color: rgb( 240, 240, 240 );
+    padding-bottom: 30px;
 }
 
 footer {
@@ -123,9 +124,12 @@ hr {
     width: 60px;
     text-align: right;
     padding: 5px;
+    border-radius: 3px;
+    background-color: gainsboro;
+    border: 1px solid #b9b9b9;
 }
 
-.example li {
+.example__info li {
     margin-bottom: 10px;
 }
 

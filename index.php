@@ -61,6 +61,10 @@
 						<ol	id="pagination2"></ol>
 					</div>
 				</section>
+				<hr />
+				<section class="how-to">
+					<h2>How To Use</h2>
+				</section>
 			</div>
 		</main>
 		<footer>

@@ -292,7 +292,8 @@
         showPreviousLink: true,
         showNextLink: true,
         showNextFewLink: true,
-        showLastLink: true
+        showLastLink: true,
+        onPageChange: function( currentPage, nextPage ) {}
     };
 
 }( jQuery ));
