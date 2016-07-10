@@ -36,6 +36,7 @@ header {
 }
 
 header h1 {
+    float: left;
     color: white;
     line-height: 100px;
     margin: 0;
@@ -215,6 +216,31 @@ hr {
 @media ( max-width: 768px ) {
     .full-width {
         margin: 0 -15px;
+    }
+
+    header {
+        height: auto;
+        padding: 15px 0;
+    }
+
+    header:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    header h1 {
+        line-height: 1;
+        float: none;
+        margin-bottom: 15px;
+    }
+
+    .download-btn,
+    .github-btn {
+        float: left;
+        margin-left: 0;
+        margin-right: 15px;
+        margin-top: 0;
     }
 
     .example__wrapper,
