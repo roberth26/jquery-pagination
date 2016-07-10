@@ -160,6 +160,8 @@
 
 				$( '#current_page' ).change( function( e ) {
 					pagination2.setCurrentPage( $( this ).val() );
+					if ( $( this ).val() > pagination2.getPageCount() )
+						$( this ).val( pagination2.getPageCount() );
 				});
 
 				$( '#display_count' ).change( function( e ) {
