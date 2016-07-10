@@ -235,6 +235,10 @@ hr {
         margin-bottom: 15px;
     }
 
+    main {
+        padding-bottom: 0;
+    }
+
     .download-btn,
     .github-btn {
         float: left;
