@@ -64,6 +64,9 @@
 				<hr />
 				<section class="how-to">
 					<h2>How To Use</h2>
+					<div class="full-width">
+						<img src="how-to.jpg" style="max-width: 100%;" />
+					</div>
 				</section>
 			</div>
 		</main>

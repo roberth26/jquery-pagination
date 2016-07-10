@@ -211,6 +211,10 @@ hr {
 }
 
 @media ( max-width: 768px ) {
+    .full-width {
+        margin: 0 -15px;
+    }
+    
     .example__wrapper,
     .example__info {
         float: none;
