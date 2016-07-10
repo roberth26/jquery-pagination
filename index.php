@@ -2,7 +2,8 @@
 	<head>
 		<title>jQuery Pagination</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/highlight.min.css" />
 	</head>
 	<body>
 		<header>
@@ -65,9 +66,47 @@
 				<hr />
 				<section class="how-to">
 					<h2>How To Use</h2>
-					<div class="full-width">
-						<img src="how-to.jpg" style="max-width: 100%;" />
-					</div>
+<pre>
+<code class="javascript">
+(function( $ ) {
+	/*
+		&lt;ol id="pagination"&gt;&lt;/ol&gt;
+
+		All options can be applied to the element via
+		attributes, ie data-current-page="10". You can
+		use your server-side language to print the
+		current page, page count, etc. into an attribute.
+	*/
+	var $pagination = $( '#pagination' ).pagination({
+		// these are all the options with their default values
+		pageCount: 10, // the total number of pages
+		displayCount: 5, // the number of page links to display
+		currentPage: 1, // the current page
+		linkTemplate: false, // a string template to use for links.
+			// '{page}' will be replaced with the current page		        
+		disabledLinks: false, // whether or not to disable unnecessary links
+		showFirstLink: true, // whether or not to show the 'first' link
+		showPreviousFewLink: true, // whether or not to show the 'previous few' link
+		showPreviousLink: true, // whether or not to show the 'previous' link
+		showNextLink: true, // whether or not to show the 'next' link
+		showNextFewLink: true, // whether or not to show the 'next few' link
+		showLastLink: true, // whether or not to show the 'last' link
+		onPageChange: function( currentPage, nextPage ) {} // callback function
+	});
+
+	// retrieve the api
+	var api = $pagination.data( 'pagination' );
+	// the api methods
+	api.update(); // re-renders the pagination component
+	api.setPageCount( int ); // sets a new page count and re-renders
+	api.getPageCount(); // gets the current page count
+	api.setDisplayCount( int ); // sets a new display count and re-renders
+	api.getDisplayCount(); // gets the current display count
+	api.setCurrentPage( int ); // sets a new current page and re-renders
+	api.getCurrentPage(); // gets the current page
+}( jQuery ));
+</code>
+</pre>
 				</section>
 			</div>
 		</main>
@@ -78,7 +117,16 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="jquery.pagination.min.js"></script>
+		<script src="js/jquery.pagination.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				hljs.configure( { tabReplace: '    ' } )
+			  $('pre code').each(function(i, block) {
+			    hljs.highlightBlock(block);
+			  });
+			});
+		</script>
 		<script>
 			(function( $ ) {
 
