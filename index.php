@@ -7,6 +7,7 @@
 	<body>
 		<header>
 			<div class="container">
+				<a class="download-btn" href="jquery.pagination.min.js" download>Download</a>
 				<a class="github-btn" href="https://github.com/roberth26/jquery-pagination" target="_blank">Github</a>
 				<h1>jQuery Pagination</h1>
 			</div>
@@ -77,7 +78,7 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="jquery.pagination.js"></script>
+		<script src="jquery.pagination.min.js"></script>
 		<script>
 			(function( $ ) {
 
