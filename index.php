@@ -123,13 +123,9 @@
 		<script>
 			(function( $ ) {
 
-			$(document).ready(function() {
+				// highlight code
 				hljs.configure( { tabReplace: '    ' } )
-			  $('pre code').each(function(i, block) {
-			    hljs.highlightBlock(block);
-			  });
-			});
-
+				hljs.highlightBlock( document.getElementById( 'code' ) );
 
 				// init pagination and retrieve api for this instance
 				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
