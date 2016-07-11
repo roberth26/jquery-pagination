@@ -117,7 +117,8 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="js/jquery.pagination.min.js"></script>
+		<!--<script src="js/jquery.pagination.min.js"></script>-->
+		<script src="js/v2.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
 			$(document).ready(function() {
@@ -129,7 +130,8 @@
 		</script>
 		<script>
 			(function( $ ) {
-
+				$( '#pagination' ).pagination();
+				/*
 				// init pagination and retrieve api for this instance
 				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
 
@@ -167,6 +169,7 @@
 				$( '#display_count' ).change( function( e ) {
 					pagination2.setDisplayCount( $( this ).val() );
 				});
+				*/
 
 			}( jQuery ));
 		</script>
