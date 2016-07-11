@@ -17,7 +17,7 @@ h1 {
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 ol, ul {
@@ -59,12 +59,15 @@ header h1 {
 
 main {
     background-color: rgb( 240, 240, 240 );
-    padding-bottom: 30px;
 }
 
 footer {
     padding: 30px 0;
-    background-color: rgb( 220, 220, 220 );
+    background-color: #39a268;
+}
+
+footer h2 {
+    color: white;
 }
 
 footer a {
@@ -208,14 +211,25 @@ hr {
     margin-top: 40px;
 }
 
-@media ( min-width: 769px ) {
-    .mobile {
-        display: none !important;
-    }
+.how-to {
+    background-color: #282b2e;
+    box-shadow: inset 0 10px 6px -8px black;
+    padding: 30px 0;
+}
+
+.how-to h2 {
+    color: #39a268;
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #39a268;
+}
+
+.clear {
+    clear: both;
 }
 
 code {
-    padding: 0 30px 30px 30px !important;
+    padding: 0 !important;
     font-family: 'consolas' !important;
     line-height: 2 !important;
     font-size: 14px !important;
@@ -231,6 +245,12 @@ code * {
 
 pre {
     margin-bottom: 0;
+}
+
+@media ( min-width: 769px ) {
+    .mobile {
+        display: none !important;
+    }
 }
 
 @media ( max-width: 768px ) {
@@ -296,5 +316,9 @@ pre {
 
     code * {
         font-size: 12px !important;
+    }
+
+    .how-to {
+        padding-bottom: 0;
     }
 }

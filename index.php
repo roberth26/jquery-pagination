@@ -63,11 +63,12 @@
 						<ol	id="pagination2"></ol>
 					</div>
 				</section>
-				<hr />
-				<section class="how-to">
+			</div>
+			<section class="how-to">
+				<div class="container">
 					<h2>How To Use</h2>
 <pre>
-<code class="javascript">
+<code id="code" class="javascript">
 (function( $ ) {
 	/*
 		&lt;ol id="pagination"&gt;&lt;/ol&gt;
@@ -83,8 +84,8 @@
 		displayCount: 5, // the number of page links to display
 		currentPage: 1, // the current page
 		linkTemplate: false, // a string template to use for links.
-			// '{page}' will be replaced with the current page		        
-		disabledLinks: false, // whether or not to disable unnecessary links
+			// '{page}' will be replaced with the current page	
+		disabledLinks: false, // whether or not to disable unnecessary links	        
 		showFirstLink: true, // whether or not to show the 'first' link
 		showPreviousFewLink: true, // whether or not to show the 'previous few' link
 		showPreviousLink: true, // whether or not to show the 'previous' link
@@ -107,8 +108,8 @@
 }( jQuery ));
 </code>
 </pre>
-				</section>
-			</div>
+				</div>
+			</section>
 		</main>
 		<footer>
 			<div class="container">
@@ -120,15 +121,15 @@
 		<script src="js/jquery.pagination.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
+			(function( $ ) {
+
 			$(document).ready(function() {
 				hljs.configure( { tabReplace: '    ' } )
 			  $('pre code').each(function(i, block) {
 			    hljs.highlightBlock(block);
 			  });
 			});
-		</script>
-		<script>
-			(function( $ ) {
+
 
 				// init pagination and retrieve api for this instance
 				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
