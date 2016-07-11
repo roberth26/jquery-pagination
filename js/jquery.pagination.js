@@ -13,7 +13,7 @@
                 var $items = $( '<div />' );
 
                 // 'first' link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showFirstLink ) return;
                     if ( props.disabledLinks && props.currentPage == 1 ) {
                         $items.append(
@@ -40,10 +40,10 @@
                             )
                         );
                     }
-                }( $items, props ));
+                }());
 
                 // previous few link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showPreviousFewLink ) return;
                     if ( props.disabledLinks && props.currentPage == 1 ) {
                         $items.append(
@@ -70,10 +70,10 @@
                             )
                         ); 
                     }
-                }( $items, props ));
+                }());
 
                 // previous page link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showPreviousLink ) return;
                     if ( props.disabledLinks && props.currentPage == 1 ) {
                         $items.append(
@@ -100,10 +100,10 @@
                             )
                         );  
                     }
-                }( $items, props ));
+                }());
 
                 // indexed page links
-                (function( $items, props ) {
+                (function() {
                     var displayCount = Math.min( props.pageCount, props.displayCount );
                     var start = props.currentPage - parseInt( displayCount / 2 );
                     // ensure start index isn't out of max bounds
@@ -113,11 +113,12 @@
                     var end = start + displayCount - 1;
                     // ensure end index isn't out of max bounds
                     end = Math.min( props.pageCount, end );
-                    
                     for ( var i = start; i <= end; i++ ) {
+                        var className = i == props.currentPage ? 'pagination__item pagination__item--page pagination__item--active' : 'pagination__item pagination__item--page';
+                        className += ' pagination__item--index' + ( i - props.currentPage );
                         $items.append(
                             $( '<li />', {
-                                'class': i == props.currentPage ? 'pagination__item pagination__item--page pagination__item--active' : 'pagination__item pagination__item--page'
+                                'class': className
                             }).append(
                                 $( '<a />', {
                                     text: i,
@@ -128,10 +129,10 @@
                             )
                         );
                     }
-                }( $items, props ));
+                }());
 
                 // next page link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showNextLink ) return;
                     if ( props.disabledLinks && props.currentPage >= props.pageCount ) {
                         $items.append(
@@ -158,10 +159,10 @@
                             )
                         );
                     }
-                }( $items, props ));
+                }());
 
                 // next few link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showNextFewLink ) return;
                     if ( props.disabledLinks && props.currentPage >= props.pageCount ) {
                         $items.append(
@@ -188,10 +189,10 @@
                             )
                         );
                     }
-                }( $items, props ));
+                }());
 
                 // 'last' page link
-                (function( $items, props ) {
+                (function() {
                     if ( !props.showLastLink ) return;
                     if ( props.disabledLinks && props.currentPage >= props.pageCount ) {
                         $items.append(
@@ -218,7 +219,7 @@
                             )
                         );  
                     }
-                }( $items, props ));
+                }());
 
                 // append
                 $el.html( $items.html() );
