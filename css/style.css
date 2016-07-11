@@ -31,7 +31,7 @@ strong {
 }
 
 header {
-    background-color: #39a268;
+    background-color: #31bb6f;
     height: 100px;
 }
 
@@ -63,7 +63,7 @@ main {
 
 footer {
     padding: 30px 0;
-    background-color: #39a268;
+    background-color: #31bb6f;
 }
 
 footer h2 {
@@ -181,7 +181,7 @@ hr {
 
 .pagination__item--active {
     border: 0;
-    background-color: #39a268;
+    background-color: #31bb6f;
     color: white;
 }
 
@@ -218,10 +218,10 @@ hr {
 }
 
 .how-to h2 {
-    color: #39a268;
+    color: #31bb6f;
     font-size: 24px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #39a268;
+    border-bottom: 1px solid #31bb6f;
 }
 
 .clear {
