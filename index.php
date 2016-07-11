@@ -17,7 +17,7 @@
 			<div class="container">
 				<section class="example">				
 					<?php
-						$page_count = 10; // this would be the number of database entries
+						$pageCount = 10; // this would be the number of database entries
 						if ( !is_null( $_GET[ 'page' ] ) )
 							$page = $_GET[ 'page' ];
 						else
@@ -25,7 +25,7 @@
 					?>
 					<div class="example__info">
 						<ul>
-							<li><strong>pageCount:</strong> <?php echo $page_count; ?> *from server</li>
+							<li><strong>pageCount:</strong> <?php echo $pageCount; ?> *from server</li>
 							<li><strong>currentPage:</strong> <?php echo $page; ?> *from server</li>
 							<li><strong>displayCount:</strong> 5</li>
 							<li><strong>linkTemplate:</strong> ?page={page}</li>
@@ -35,7 +35,7 @@
 					<div class="example__wrapper">
 						<ol	class="pagination"
 							id="pagination"
-							data-page-count="<?php echo $page_count; ?>"
+							data-page-count="<?php echo $pageCount; ?>"
 							data-display-count="5"
 							data-current-page="<?php echo $page; ?>",
 							data-link-template="?page={page}",
@@ -54,9 +54,9 @@
 				<section class="example">
 					<div class="example__info">
 						<ul>
-							<li><label>pageCount:</label> <input type="number" id="page_count" min="1" value="7" /></li>
-							<li><label>currentPage:</label> <input type="number" id="current_page" min="1" value="4" /></li>
-							<li><label>displayCount:</label> <input type="number" id="display_count" min="1" value="3" /></li>
+							<li><label>pageCount:</label> <input type="number" id="pageCount" min="1" value="7" /></li>
+							<li><label>currentPage:</label> <input type="number" id="currentPage" min="1" max="7" value="4" /></li>
+							<li><label>displayCount:</label> <input type="number" id="displayCount" min="1" value="3" /></li>
 						</ul>
 					</div>
 					<div class="example__wrapper">
@@ -130,15 +130,18 @@
 				// init pagination and retrieve api for this instance
 				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
 
+				// store display count
+				var displayCount = pagination.getDisplayCount();
+
 				$( window ).resize( function() {
-					if ( $( this ).width() <= 768 ) {
+					if ( $( this ).width() <= 768 ) { // if mobile
 						pagination.setDisplayCount( 3 );
-					} else {
-						pagination.setDisplayCount( pagination.getDisplayCount() );
+					} else { // else desktop
+						pagination.setDisplayCount( displayCount ); // restore initial displayCount
 					}
 				});
 
-				$( window ).resize();
+				$( window ).resize(); // trigger on page load in case of mobile device
 
 				// init pagination and retrieve api for this instance
 				var pagination2 = $( '#pagination2' ).pagination({
@@ -146,22 +149,29 @@
 					displayCount: 3,
 					currentPage: 4,
 					onPageChange: function( currentPage, nextPage ) {
-						$( '#current_page' ).val( nextPage );
+						$( '#currentPage' ).val( nextPage );
 					}
 				}).data( 'pagination' );
 
+				// input controls
+				var $pageCount = $( '#pageCount' );
+				var $currentPage = $( '#currentPage' );
+				var $displayCount = $( '#displayCount' );
+
 				// bindings
-				$( '#page_count' ).change( function( e ) {
+				$pageCount.change( function( e ) {
 					pagination2.setPageCount( $( this ).val() );
+					// prevent currentPage input from exceeding pageCount
+					$currentPage.attr( 'max', pagination2.getPageCount() );
+					// re-sync currentPage input
+					$currentPage.val( pagination2.getCurrentPage() );
 				});
 
-				$( '#current_page' ).change( function( e ) {
+				$( '#currentPage' ).change( function( e ) {
 					pagination2.setCurrentPage( $( this ).val() );
-					if ( $( this ).val() > pagination2.getPageCount() )
-						$( this ).val( pagination2.getPageCount() );
 				});
 
-				$( '#display_count' ).change( function( e ) {
+				$( '#displayCount' ).change( function( e ) {
 					pagination2.setDisplayCount( $( this ).val() );
 				});
 
