@@ -143,20 +143,21 @@
 
 				$( window ).resize(); // trigger on page load in case of mobile device
 
+
+				// input controls
+				var $pageCount = $( '#pageCount' );
+				var $currentPage = $( '#currentPage' );
+				var $displayCount = $( '#displayCount' );
+
 				// init pagination and retrieve api for this instance
 				var pagination2 = $( '#pagination2' ).pagination({
 					pageCount: 7,
 					displayCount: 3,
 					currentPage: 4,
 					onPageChange: function( currentPage, nextPage ) {
-						$( '#currentPage' ).val( nextPage );
+						$currentPage.val( nextPage );
 					}
 				}).data( 'pagination' );
-
-				// input controls
-				var $pageCount = $( '#pageCount' );
-				var $currentPage = $( '#currentPage' );
-				var $displayCount = $( '#displayCount' );
 
 				// bindings
 				$pageCount.change( function( e ) {
