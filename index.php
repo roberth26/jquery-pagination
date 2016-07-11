@@ -9,7 +9,7 @@
 		<header>
 			<div class="container">
 				<h1>jQuery Pagination</h1>
-				<a class="download-btn" href="jquery.pagination.min.js" download>Download</a>
+				<a class="download-btn" href="js/jquery.pagination.min.js" download>Download</a>
 				<a class="github-btn" href="https://github.com/roberth26/jquery-pagination" target="_blank">Github</a>
 			</div>
 		</header>
