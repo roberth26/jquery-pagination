@@ -117,7 +117,7 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="js/jquery.pagination.js"></script>
+		<script src="js/jquery.pagination.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
 			(function( $ ) {
