@@ -41,11 +41,7 @@
 							data-disabled-links="true"
 						></ol>
 						<div class="mobile">
-							<p>*API method(s) used to configure pagination for mobile:</p>
-							<ul>
-								<li>setDisplayCount( 3 )</li>
-								<li>Some items hidden with CSS</li>
-							</ul>
+							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their index class.</p>
 						</div>
 					</div>
 				</section>
@@ -53,7 +49,7 @@
 				<section class="example">
 					<div class="example__info">
 						<ul>
-							<li><label>pageCount:</label> <input type="number" id="pageCount" min="1" value="7" /></li>
+							<li><label>pageCount:</label> <input type="number" id="pageCount" min="0" value="7" /></li>
 							<li><label>currentPage:</label> <input type="number" id="currentPage" min="1" max="7" value="4" /></li>
 							<li><label>displayCount:</label> <input type="number" id="displayCount" min="0" value="3" /></li>
 							<li><label>showAll:</label> <input type="checkbox" id="showAll" /></li>
@@ -121,7 +117,7 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="js/jquery.pagination.min.js"></script>
+		<script src="js/jquery.pagination.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
 			(function( $ ) {
@@ -132,20 +128,6 @@
 
 				// init pagination and retrieve api for this instance
 				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
-
-				// store display count
-				var displayCount = pagination.getDisplayCount();
-
-				$( window ).resize( function() {
-					if ( $( this ).width() <= 768 ) { // if mobile
-						pagination.setDisplayCount( 3 );
-					} else { // else desktop
-						pagination.setDisplayCount( displayCount ); // restore initial displayCount
-					}
-				});
-
-				$( window ).resize(); // trigger on page load in case of mobile device
-
 
 				// input controls
 				var $pageCount = $( '#pageCount' );
@@ -182,7 +164,6 @@
 
 				$( '#showAll' ).change( function( e ) {
 					pagination2.showAll( $( this ).is( ':checked' ) );
-					console.log( pagination2.getShowAll() );
 				});
 
 			}( jQuery ));

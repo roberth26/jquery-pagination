@@ -183,6 +183,7 @@ hr {
     border: 0;
     background-color: #31bb6f;
     color: white;
+    opacity: 1 !important;
 }
 
 .pagination__item--disabled {
@@ -300,9 +301,18 @@ pre {
     #pagination .pagination__item--first,
     #pagination .pagination__item--last,
     #pagination .pagination__item--previous-few,
-    #pagination .pagination__item--next-few {
+    #pagination .pagination__item--next-few,
+    #pagination .pagination__item--page {
         display: none;
     }
+
+    #pagination .pagination__item--index-1,
+    #pagination .pagination__item--index0,
+    #pagination .pagination__item--index1 {
+        display: block !important;
+    } 
+
+
 
     .example__info ul {
         margin-bottom: 15px;

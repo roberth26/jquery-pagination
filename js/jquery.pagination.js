@@ -115,20 +115,35 @@
                     // ensure end index isn't out of max bounds
                     end = Math.min( props.pageCount, end );
                     for ( var i = start; i <= end; i++ ) {
-                        var className = i == props.currentPage ? 'pagination__item pagination__item--page pagination__item--active' : 'pagination__item pagination__item--page';
-                        className += ' pagination__item--index' + ( i - props.currentPage );
-                        $items.append(
-                            $( '<li />', {
-                                'class': className
-                            }).append(
-                                $( '<a />', {
-                                    text: i,
-                                    'data-index': i,
-                                    href: props.linkTemplate ? props.linkTemplate.replace( '{page}', i ) : '#',
-                                    'class': 'pagination__item__link'
-                                })
-                            )
-                        );
+                        var className = 'pagination__item pagination__item--page';
+                        className += ' pagination__item--index' + ( i - props.currentPage ); // add index class
+                        className += i == props.currentPage ?  ' pagination__item--active' : ''; // add active class
+                        if ( i == props.currentPage && props.disabledLinks ) {
+                            className += ' pagination__item--disabled';
+                            $items.append(
+                                $( '<li />', {
+                                    'class': className
+                                }).append(
+                                    $( '<a />', {
+                                        text: i,
+                                        'class': 'pagination__item__link'
+                                    })
+                                )
+                            );
+                        } else {
+                            $items.append(
+                                $( '<li />', {
+                                    'class': className
+                                }).append(
+                                    $( '<a />', {
+                                        text: i,
+                                        'data-index': i,
+                                        href: props.linkTemplate ? props.linkTemplate.replace( '{page}', i ) : '#',
+                                        'class': 'pagination__item__link'
+                                    })
+                                )
+                            );
+                        }
                     }
                 }());
 
@@ -226,32 +241,41 @@
                 $el.html( $items.html() );
             }
 
-            function setPageCount( count ) {
-                props.pageCount = Math.max( 1, count );
-                props.currentPage = Math.min( props.pageCount, props.currentPage );
-                render();
+            function setPageCount( pageCount ) {
+                pageCount = Math.max( 0, pageCount );
+                if ( pageCount != props.pageCount ) {
+                    props.pageCount = pageCount;
+                    props.currentPage = Math.min( props.pageCount, props.currentPage );
+                    render();
+                }
             }
 
             function getPageCount() {
                 return props.pageCount;
             }
 
-            function setDisplayCount( count ) {
-                props.displayCount = Math.max( 0, count );
-                render();
+            function setDisplayCount( displayCount ) {
+                displayCount = Math.max( 0, displayCount );
+                if ( displayCount != props.displayCount ) {
+                    props.displayCount = displayCount;
+                    render();
+                }
             }
 
             function getDisplayCount() {
                 return props.displayCount;
             }
 
-            function setCurrentPage( page ) {
-                var currentPage = props.currentPage;
-                props.currentPage = Math.max( 1, page );
-                props.currentPage = Math.min( props.pageCount, props.currentPage );
-                if ( props.onPageChange && currentPage != props.currentPage )
-                    props.onPageChange.call( null, currentPage, props.currentPage );
-                render();
+            function setCurrentPage( currentPage ) {
+                currentPage = Math.max( 0, currentPage );
+                currentPage = Math.min( props.pageCount, currentPage );
+                if ( currentPage != props.currentPage ) {
+                    var curr = props.currentPage;
+                    props.currentPage = currentPage;
+                    if ( props.onPageChange )
+                        props.onPageChange.call( null, curr, props.currentPage );
+                    render();  
+                }
             }
 
             function getCurrentPage() {
@@ -259,8 +283,10 @@
             }
 
             function showAll( showAll ) {
-                props.showAll = showAll;
-                render();
+                if ( showAll != props.showAll ) {
+                    props.showAll = showAll;
+                    render();
+                }
             }
 
             function getShowAll() {
@@ -282,7 +308,7 @@
                 showAll: showAll,
                 getShowAll: getShowAll
             });
-            
+
             // user event bindings
             $el.on( 'click', '.pagination__item__link', function( e ) {
                 if ( $( this ).attr( 'href' ) == '#' ) {
