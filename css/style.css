@@ -321,7 +321,7 @@ pre {
 
     /* Edge cases */
     #pagination .pagination__item--index3.pagination__item--offset2,
-    #pagination .pagination__item--index-reverse2.pagination__item--offset-2 {
+    #pagination .pagination__item--index-reverse3.pagination__item--offset-2 {
         display: block !important;
     }
 
@@ -346,10 +346,10 @@ pre {
     #pagination2 .pagination__item--index4.pagination__item--offset3,
     #pagination2 .pagination__item--index5.pagination__item--offset4,
     #pagination2 .pagination__item--index5.pagination__item--offset3,
-    #pagination2 .pagination__item--index-reverse2.pagination__item--offset-2,
-    #pagination2 .pagination__item--index-reverse3.pagination__item--offset-3,
-    #pagination2 .pagination__item--index-reverse4.pagination__item--offset-4,
-    #pagination2 .pagination__item--index-reverse4.pagination__item--offset-3 {
+    #pagination2 .pagination__item--index-reverse3.pagination__item--offset-2,
+    #pagination2 .pagination__item--index-reverse4.pagination__item--offset-3,
+    #pagination2 .pagination__item--index-reverse5.pagination__item--offset-4,
+    #pagination2 .pagination__item--index-reverse5.pagination__item--offset-3 {
         display: block !important;
     }
 

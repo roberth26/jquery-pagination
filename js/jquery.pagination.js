@@ -118,7 +118,7 @@
                         var className = 'pagination__item pagination__item--page';
                         className += ' pagination__item--offset' + ( i - props.currentPage ); // add offset class
                         className += ' pagination__item--index' + i; // add index class
-                        className += ' pagination__item--index-reverse' + ( props.pageCount - i ); // add index-from-end class
+                        className += ' pagination__item--index-reverse' + ( props.pageCount - i + 1 ); // add index-reverse class
                         className += i == props.currentPage ?  ' pagination__item--active' : ''; // add active class
                         if ( i == props.currentPage && props.disabledLinks ) {
                             className += ' pagination__item--disabled';
