@@ -18,10 +18,9 @@
 				<section class="example">				
 					<?php
 						$pageCount = 10; // this would be the number of database entries
-						if ( !is_null( $_GET[ 'page' ] ) )
+						$page = 1;
+						if ( isset( $_GET[ 'page' ] ) )
 							$page = $_GET[ 'page' ];
-						else
-							$page = 1;
 					?>
 					<div class="example__info">
 						<ul>
@@ -56,7 +55,8 @@
 						<ul>
 							<li><label>pageCount:</label> <input type="number" id="pageCount" min="1" value="7" /></li>
 							<li><label>currentPage:</label> <input type="number" id="currentPage" min="1" max="7" value="4" /></li>
-							<li><label>displayCount:</label> <input type="number" id="displayCount" min="1" value="3" /></li>
+							<li><label>displayCount:</label> <input type="number" id="displayCount" min="0" value="3" /></li>
+							<li><label>showAll:</label> <input type="checkbox" id="showAll" /></li>
 						</ul>
 					</div>
 					<div class="example__wrapper">
@@ -82,6 +82,7 @@
 		// these are all the options with their default values
 		pageCount: 10, // the total number of pages
 		displayCount: 5, // the number of page links to display
+		showAll: false, // whether or not to show all page links
 		currentPage: 1, // the current page
 		linkTemplate: false, // a string template to use for links.
 			// '{page}' will be replaced with the current page	
@@ -103,6 +104,8 @@
 	api.getPageCount(); // gets the current page count
 	api.setDisplayCount( int ); // sets a new display count and re-renders
 	api.getDisplayCount(); // gets the current display count
+	api.showAll( boolean ); // sets the showAll property and re-renders
+	api.getShowAll(); // returns the value of the showAll property
 	api.setCurrentPage( int ); // sets a new current page and re-renders
 	api.getCurrentPage(); // gets the current page
 }( jQuery ));
@@ -118,7 +121,7 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="js/jquery.pagination.min.js"></script>
+		<script src="js/jquery.pagination.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
 			(function( $ ) {
@@ -148,6 +151,7 @@
 				var $pageCount = $( '#pageCount' );
 				var $currentPage = $( '#currentPage' );
 				var $displayCount = $( '#displayCount' );
+				var $showAll = $( '#showAll' );
 
 				// init pagination and retrieve api for this instance
 				var pagination2 = $( '#pagination2' ).pagination({
@@ -174,6 +178,11 @@
 
 				$( '#displayCount' ).change( function( e ) {
 					pagination2.setDisplayCount( $( this ).val() );
+				});
+
+				$( '#showAll' ).change( function( e ) {
+					pagination2.showAll( $( this ).is( ':checked' ) );
+					console.log( pagination2.getShowAll() );
 				});
 
 			}( jQuery ));

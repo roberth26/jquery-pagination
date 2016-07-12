@@ -105,6 +105,7 @@
                 // indexed page links
                 (function() {
                     var displayCount = Math.min( props.pageCount, props.displayCount );
+                    if ( props.showAll ) displayCount = props.pageCount;
                     var start = props.currentPage - parseInt( displayCount / 2 );
                     // ensure start index isn't out of max bounds
                     start = Math.min( props.pageCount - displayCount + 1, start ); 
@@ -236,7 +237,7 @@
             }
 
             function setDisplayCount( count ) {
-                props.displayCount = count;
+                props.displayCount = Math.max( 0, count );
                 render();
             }
 
@@ -257,6 +258,16 @@
                 return props.currentPage;
             }
 
+            function showAll( showAll ) {
+                props.showAll = showAll;
+                render();
+            }
+
+            function getShowAll() {
+                return props.showAll;
+            }
+
+            // initial
             render();
 
             // setup api
@@ -267,9 +278,11 @@
                 setDisplayCount: setDisplayCount,
                 getDisplayCount: getDisplayCount,
                 setCurrentPage: setCurrentPage,
-                getCurrentPage: getCurrentPage
+                getCurrentPage: getCurrentPage,
+                showAll: showAll,
+                getShowAll: getShowAll
             });
-
+            
             // user event bindings
             $el.on( 'click', '.pagination__item__link', function( e ) {
                 if ( $( this ).attr( 'href' ) == '#' ) {
@@ -285,6 +298,7 @@
     $.fn.pagination.defaults = {
         pageCount: 10,
         displayCount: 5,
+        showAll: false,
         currentPage: 1,
         linkTemplate: false,
         disabledLinks: false,
