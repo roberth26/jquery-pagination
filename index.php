@@ -49,7 +49,7 @@
 							?>
 						</div>
 						<div class="mobile">
-							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their index class.</p>
+							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows <strong>3</strong> links on mobile. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
 						</div>
 					</div>
 				</section>
@@ -66,6 +66,9 @@
 					<div class="example__wrapper">
 						<ol	id="pagination2"></ol>
 						<div class="example__page"></div>
+						<div class="mobile">
+							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows a maximum of <strong>5</strong> links on mobile. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
+						</div>
 					</div>
 				</section>
 				<hr />
