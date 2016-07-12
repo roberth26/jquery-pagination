@@ -15,9 +15,12 @@
 		</header>
 		<main>
 			<div class="container">
-				<section class="example">				
+				<section class="example" id="example1">
+					<h2 class="example__title">Server-side</h2>		
 					<?php
-						$pageCount = 10; // this would be the number of database entries
+						$json = file_get_contents( 'data.json' );
+						$pages = json_decode( $json, true )[ 'pages' ];
+						$pageCount = count( $pages ); // this would be the number of database entries
 						$page = 1;
 						if ( isset( $_GET[ 'page' ] ) )
 							$page = $_GET[ 'page' ];
@@ -40,23 +43,44 @@
 							data-link-template="?page={page}",
 							data-disabled-links="true"
 						></ol>
+						<div class="example__page">
+							<?php
+								echo $pages[ $page - 1 ];
+							?>
+						</div>
 						<div class="mobile">
 							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their index class.</p>
 						</div>
 					</div>
 				</section>
 				<hr />
-				<section class="example">
+				<section class="example" id="example2">
+					<h2 class="example__title">Client-side</h2>
 					<div class="example__info">
 						<ul>
-							<li><label>pageCount:</label> <input type="number" id="pageCount" min="0" value="7" /></li>
-							<li><label>currentPage:</label> <input type="number" id="currentPage" min="1" max="7" value="4" /></li>
+							<li><label>currentPage:</label> <input type="number" id="currentPage" min="1" max="10" value="1" /></li>
 							<li><label>displayCount:</label> <input type="number" id="displayCount" min="0" value="3" /></li>
 							<li><label>showAll:</label> <input type="checkbox" id="showAll" /></li>
 						</ul>
 					</div>
 					<div class="example__wrapper">
 						<ol	id="pagination2"></ol>
+						<div class="example__page"></div>
+					</div>
+				</section>
+				<hr />
+				<section class="example" id="example3">
+					<h2 class="example__title">Untethered</h2>
+					<div class="example__info">
+						<ul>
+							<li><label>pageCount:</label> <input type="number" id="pageCount2" min="0" value="7" /></li>
+							<li><label>currentPage:</label> <input type="number" id="currentPage2" min="0" max="7" value="4" /></li>
+							<li><label>displayCount:</label> <input type="number" id="displayCount2" min="0" value="3" /></li>
+							<li><label>showAll:</label> <input type="checkbox" id="showAll2" /></li>
+						</ul>
+					</div>
+					<div class="example__wrapper">
+						<ol	id="pagination3"></ol>
 					</div>
 				</section>
 			</div>
@@ -117,7 +141,7 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script src="js/jquery.pagination.min.js"></script>
+		<script src="js/jquery.pagination.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
 		<script>
 			(function( $ ) {
@@ -126,45 +150,79 @@
 				hljs.configure( { tabReplace: '    ' } )
 				hljs.highlightBlock( document.getElementById( 'code' ) );
 
-				// init pagination and retrieve api for this instance
-				var pagination = $( '#pagination' ).pagination().data( 'pagination' );
+				// example 1
+				(function() {
+					// init pagination and retrieve api for this instance
+					var pagination = $( '#pagination' ).pagination().data( 'pagination' );
+				}());
 
-				// input controls
-				var $pageCount = $( '#pageCount' );
-				var $currentPage = $( '#currentPage' );
-				var $displayCount = $( '#displayCount' );
-				var $showAll = $( '#showAll' );
+				// example 2
+				(function() {
+					// json printed into javascript variable, this could be done with ajax instead
+					var pageData = <?php echo $json; ?>;
+					var $examplePage = $( '#example2 .example__page' );
+					// input controls
+					var $currentPage = $( '#currentPage' );
+					var $displayCount = $( '#displayCount' );
+					var $showAll = $( '#showAll' );
+					// init pagination and retrieve api for this instance
+					var pagination = $( '#pagination2' ).pagination({
+						pageCount: pageData.pages.length,
+						displayCount: 3,
+						currentPage: 1,
+						onPageChange: function( currentPage, nextPage ) {
+							$examplePage.html( pageData.pages[ nextPage - 1] );
+							$currentPage.val( nextPage );
+						}
+					}).data( 'pagination' );
+					// display current page
+					$examplePage.html( pageData.pages[ pagination.getCurrentPage() - 1 ] );
+					// user event bindings
+					$currentPage.change( function( e ) {
+						pagination.setCurrentPage( $( this ).val() );
+					});
+					$displayCount.change( function( e ) {
+						pagination.setDisplayCount( $( this ).val() );
+					});
+					$showAll.change( function( e ) {
+						pagination.showAll( $( this ).is( ':checked' ) );
+					});
+				}());
 
-				// init pagination and retrieve api for this instance
-				var pagination2 = $( '#pagination2' ).pagination({
-					pageCount: 7,
-					displayCount: 3,
-					currentPage: 4,
-					onPageChange: function( currentPage, nextPage ) {
-						$currentPage.val( nextPage );
-					}
-				}).data( 'pagination' );
-
-				// bindings
-				$pageCount.change( function( e ) {
-					pagination2.setPageCount( $( this ).val() );
-					// prevent currentPage input from exceeding pageCount
-					$currentPage.attr( 'max', pagination2.getPageCount() );
-					// re-sync currentPage input
-					$currentPage.val( pagination2.getCurrentPage() );
-				});
-
-				$( '#currentPage' ).change( function( e ) {
-					pagination2.setCurrentPage( $( this ).val() );
-				});
-
-				$( '#displayCount' ).change( function( e ) {
-					pagination2.setDisplayCount( $( this ).val() );
-				});
-
-				$( '#showAll' ).change( function( e ) {
-					pagination2.showAll( $( this ).is( ':checked' ) );
-				});
+				// example 2
+				(function() {
+					// input controls
+					var $pageCount = $( '#pageCount2' );
+					var $currentPage = $( '#currentPage2' );
+					var $displayCount = $( '#displayCount2' );
+					var $showAll = $( '#showAll2' );
+					// init pagination and retrieve api for this instance
+					var pagination = $( '#pagination3' ).pagination({
+						pageCount: 7,
+						displayCount: 3,
+						currentPage: 4,
+						onPageChange: function( currentPage, nextPage ) {
+							$currentPage.val( nextPage );
+						}
+					}).data( 'pagination' );
+					//  user event bindings
+					$pageCount.change( function( e ) {
+						pagination.setPageCount( $( this ).val() );
+						// prevent currentPage input from exceeding pageCount
+						$currentPage.attr( 'max', pagination.getPageCount() );
+						// re-sync currentPage input
+						$currentPage.val( pagination.getCurrentPage() );
+					});
+					$currentPage.change( function( e ) {
+						pagination.setCurrentPage( $( this ).val() );
+					});
+					$displayCount.change( function( e ) {
+						pagination.setDisplayCount( $( this ).val() );
+					});
+					$showAll.change( function( e ) {
+						pagination.showAll( $( this ).is( ':checked' ) );
+					});
+				}());
 
 			}( jQuery ));
 		</script>
