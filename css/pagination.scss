@@ -1,0 +1,45 @@
+@mixin display( $count: 3, $important: false ) {
+    /* show range */
+    $start: 0 - floor( $count / 2 );
+    $end: $start + $count - 1;
+    $classes: ();
+    @for $i from $start through $end {
+        $classes: append( $classes, '.pagination__item--offset' + $i + ',' );
+    }
+    #{ $classes } {
+        display: block !important;
+    }
+    /* left and right edge cases */
+    $classes: ();
+    $start: floor( $count / 2 );
+    @if ( $count % 2 != 0 ) {
+        $start: $start + 1;
+    }
+    @for $i from $start through $count {
+        @for $j from $start through $count {
+            @if ( $i > $j ) {
+                $classes: append( $classes, '.pagination__item--index' + $i + '.pagination__item--offset' + $j + ',' );
+                $classes: append( $classes, '.pagination__item--index-reverse' + $i + '.pagination__item--offset-' + $j + ',' );  
+            }
+        }
+    }
+    #{ $classes } {
+        display: block #{ if( $important, '!important', '' ) };
+    }
+}
+
+@media ( max-width: 768px ) {
+    /* hide all */
+    .pagination__item {
+        display: none;
+    }
+    @include display( 5 );
+}
+
+@media ( max-width: 480px ) {
+    /* hide all */
+    .pagination__item {
+        display: none !important;
+    }
+    @include display( 3, $important: true );
+}
