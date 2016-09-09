@@ -50,7 +50,7 @@
 							?>
 						</div>
 						<div class="mobile">
-							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows <strong>3</strong> links on mobile. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
+							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows at most <strong>5</strong> links on small screens and at most <strong>3</strong> links on extra-small screens. I developed a <a href="https://github.com/roberth26/jquery-pagination/blob/master/css/pagination.scss" target="_blank">SCSS mixin</a> to make this easy. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
 						</div>
 					</div>
 				</section>
@@ -68,7 +68,7 @@
 						<ol	id="pagination2"></ol>
 						<div class="example__page"></div>
 						<div class="mobile">
-							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows a maximum of <strong>5</strong> links on mobile. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
+							<p>For mobile display, CSS can be used to hide all page links, and show only a few based on their --index class. To handle the start and end edge cases, use the --index-reverse and --offset classes. This example shows at most <strong>5</strong> links on small screens and at most <strong>3</strong> links on extra-small screens. I developed a <a href="https://github.com/roberth26/jquery-pagination/blob/master/css/pagination.scss" target="_blank">SCSS mixin</a> to make this easy. Additionally, you can use the api method setDisplayCount() on a window resize event.</p>
 						</div>
 					</div>
 				</section>
