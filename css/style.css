@@ -160,65 +160,6 @@ hr {
     clear: both;
 }
 
-.pagination {
-    list-style: none;
-    padding: 0;
-    min-height: 41px;
-}
-
-.pagination:after {
-    content: '';
-    display: table;
-    clear: both;
-}
-  
-.pagination__item {
-    float: left;
-    border-radius: 3px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    min-width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    background-color: white;
-    border: 1px solid rgb( 225, 225, 225 );
-    color: rgb( 100, 100, 100 );
-    box-sizing: border-box;
-    transition: all .25s ease;
-    box-shadow: none;
-    font-size: 14px;
-}
-
-.pagination__item:hover {
-    box-shadow: 0 1px 4px rgba( 0, 0, 0, .2 );
-}
-
-.pagination__item--active {
-    border: 0;
-    background-color: #31bb6f;
-    color: white;
-    opacity: 1 !important;
-}
-
-.pagination__item--disabled {
-    opacity: .5;
-}
-
-.pagination__item--disabled:hover {
-    box-shadow: none;
-}
-    
-.pagination__item__link {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0 12px;
-    box-sizing: border-box;
-}
-
 .how-to {
     background-color: #282b2e;
     box-shadow: inset 0 10px 6px -8px black;
